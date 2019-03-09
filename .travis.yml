@@ -1,7 +1,7 @@
 language: android
 android:
   components:
-    - build-tools-18.1.0
+    - build-tools-26.1.1
 
 #before_script:
   # Create and start emulator
