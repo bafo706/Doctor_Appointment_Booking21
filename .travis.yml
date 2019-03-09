@@ -1,12 +1,17 @@
-language: android
-android:
-  components:
-    - build-tools-26.1.1
+language: java
+install: true
 
-#before_script:
-  # Create and start emulator
-  #- echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a
-  #- emulator -avd test -no-skin -no-audio -no-window &
-  #- ./wait_for_emulator
+jdk:
+  - oraclejdk8
 
-#script: mvn install -Pintegration-tests -Dandroid.device=test
+script:
+  - ./gradlew build --scan -s
+  
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
