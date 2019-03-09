@@ -19,9 +19,6 @@ android:
     - addon-google_apis-google-19
 
 before_install:
-  -pwd
-  - cd gradle-site-plugin
-  -ls
-  - /.gradlew
+  -/files1b/1629230/gradle-site-plugin/gradlew
 script:
   - /.gradlew clean build"
