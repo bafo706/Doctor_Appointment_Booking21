@@ -23,4 +23,4 @@ before_install:
 script:
   #- ./gradlew clean build"
   #- ./gradlew build --scan -s
-  - ./gradlew assembleRelease --stacktrace
+ # - ./gradlew assembleRelease --stacktrace
