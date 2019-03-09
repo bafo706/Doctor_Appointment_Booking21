@@ -17,9 +17,6 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-lintOptions {
-    abortOnError false
-}
 
 allprojects {
     repositories {
@@ -27,6 +24,8 @@ allprojects {
         google()
     }
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
