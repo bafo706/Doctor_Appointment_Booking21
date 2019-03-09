@@ -19,6 +19,8 @@ android:
     - addon-google_apis-google-19
 
 before_install:
+  - pwd
+  - ls -la
   - chmod +x /.gradlew
 script:
   - /.gradlew clean build"
