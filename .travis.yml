@@ -20,8 +20,7 @@ android:
 
 before_install:
   - chmod +x ./gradlew
-#script:
-  #- "/.gradlew clean build"
-  #- ./gradlew build --scan -s
 script:
+  - ./gradlew clean build"
+  - ./gradlew build --scan -s
   - ./gradlew assembleRelease --stacktrace
