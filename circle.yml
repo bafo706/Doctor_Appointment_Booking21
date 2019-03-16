@@ -1,17 +1,36 @@
-general:
-    artifacts:
-        - /home/ubuntu/Doctor_Appointment_Booking21/app/build/outputs/apk/
-
-machine:
+version: 2
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-28-alpha
     environment:
-        ANDROID_HOME: /usr/local/android-sdk-linux
-
-dependencies:
-    override:
-        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-26.1.1,android-26,extra-google-m2repository,extra-google-google_play_services,extra-android-support
-        - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
-
-test:
-    override:
-        - (./gradlew assemble):
-            timeout: 360
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+         name: Chmod permissions
+         command: sudo chmod +x ./gradlew
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - run:
+          name: Run Unit Tests
+          command: ./gradlew test
+      - run:
+          name: Run Linters
+          command: ./gradlew check
+      - run:
+          name: Build
+          command: ./gradlew assemble
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results
+      - save_cache:
+          paths:
+            - ~/.gradle
+key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
