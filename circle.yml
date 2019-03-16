@@ -30,7 +30,7 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
-      - save_cache:
+      #- save_cache:
           paths:
             - ~/.gradle
 key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
