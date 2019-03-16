@@ -1,6 +1,6 @@
 general:
     artifacts:
-        - /home/ubuntu/your-app-name/app/build/outputs/apk/
+        - /home/ubuntu/Doctor_Appointment_Booking21/app/build/outputs/apk/
 
 machine:
     environment:
